@@ -74,16 +74,18 @@ const Index = () => {
   };
 
   const teleportNoButton = () => {
-    if (!noButtonRef.current) return;
+    if (!noButtonRef.current || !yesButtonRef.current) return;
 
+    const yesButton = yesButtonRef.current;
+    const yesRect = yesButton.getBoundingClientRect();
     const buttonWidth = noButtonRef.current.offsetWidth || 120;
     const buttonHeight = noButtonRef.current.offsetHeight || 48;
 
     const maxX = window.innerWidth - buttonWidth - 20;
     const maxY = window.innerHeight - buttonHeight - 20;
 
-    const minDistance = 150;
-    const maxDistance = 200;
+    const minDistanceFromCursor = 150;
+    const minDistanceFromYes = 200;
     let attempts = 0;
     let newX, newY;
 
@@ -91,17 +93,22 @@ const Index = () => {
       newX = Math.max(10, Math.min(Math.random() * maxX, maxX));
       newY = Math.max(10, Math.min(Math.random() * maxY, maxY));
 
-      // Check distance from cursor (both X and Y must be at least minDistance apart)
-      const distanceX = Math.abs(newX + buttonWidth / 2 - mousePosition.x);
-      const distanceY = Math.abs(newY + buttonHeight / 2 - mousePosition.y);
-      const totalDistance = Math.sqrt(
-        Math.pow(distanceX, 2) + Math.pow(distanceY, 2)
+      // Check distance from cursor
+      const distanceFromCursor = Math.sqrt(
+        Math.pow(newX + buttonWidth / 2 - mousePosition.x, 2) +
+        Math.pow(newY + buttonHeight / 2 - mousePosition.y, 2)
       );
 
-      // Ensure position is far enough from cursor and within viewport bounds
+      // Check distance from YES button
+      const distanceFromYes = Math.sqrt(
+        Math.pow(newX + buttonWidth / 2 - (yesRect.left + yesRect.width / 2), 2) +
+        Math.pow(newY + buttonHeight / 2 - (yesRect.top + yesRect.height / 2), 2)
+      );
+
+      // Ensure position is far enough from both cursor and YES button, and within viewport
       if (
-        totalDistance >= minDistance &&
-        totalDistance <= maxDistance * 2 &&
+        distanceFromCursor >= minDistanceFromCursor &&
+        distanceFromYes >= minDistanceFromYes &&
         newX >= 10 &&
         newX <= maxX &&
         newY >= 10 &&
