@@ -138,7 +138,7 @@ const Index = () => {
             ref={yesButtonRef}
             onClick={handleYesClick}
             variant="brutalist-primary"
-            className="font-bold uppercase text-sm tracking-wide transition-all duration-150 hover:border-white hover:border-[2px]"
+            className="font-bold uppercase text-sm tracking-wide transition-all duration-150 hover:!bg-primary hover:!text-primary-foreground hover:border-white hover:border-[2px]"
           >
             YES
           </Button>
