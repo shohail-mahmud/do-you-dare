@@ -4,22 +4,16 @@ import { Heart } from "lucide-react";
 
 const Index = () => {
   const [accepted, setAccepted] = useState(false);
+  const [hasBeenHovered, setHasBeenHovered] = useState(false);
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const noButtonRef = useRef<HTMLButtonElement>(null);
   const yesButtonRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Initialize NO button position
+  // Track mouse movement (only after first hover)
   useEffect(() => {
-    if (!accepted) {
-      positionNoButton(true);
-    }
-  }, [accepted]);
-
-  // Track mouse movement
-  useEffect(() => {
-    if (accepted) return;
+    if (accepted || !hasBeenHovered) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -27,11 +21,11 @@ const Index = () => {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [accepted]);
+  }, [accepted, hasBeenHovered]);
 
-  // Check proximity and teleport if needed
+  // Check proximity and teleport if needed (only after first hover)
   useEffect(() => {
-    if (accepted || !noButtonRef.current) return;
+    if (accepted || !hasBeenHovered || !noButtonRef.current) return;
 
     const noButton = noButtonRef.current;
     const rect = noButton.getBoundingClientRect();
@@ -46,7 +40,14 @@ const Index = () => {
     if (distance < 70) {
       teleportNoButton();
     }
-  }, [mousePosition, accepted]);
+  }, [mousePosition, accepted, hasBeenHovered]);
+
+  const handleNoButtonHover = () => {
+    if (!hasBeenHovered) {
+      setHasBeenHovered(true);
+      teleportNoButton();
+    }
+  };
 
   const positionNoButton = (initial = false) => {
     if (!noButtonRef.current) return;
@@ -144,14 +145,15 @@ const Index = () => {
 
           <Button
             ref={noButtonRef}
+            onMouseEnter={handleNoButtonHover}
             variant="brutalist-secondary"
             className="font-bold uppercase text-sm tracking-wide !bg-white !text-black !border-4 !border-black"
-            style={{
+            style={hasBeenHovered ? {
               position: 'fixed',
               left: `${noButtonPosition.x}px`,
               top: `${noButtonPosition.y}px`,
               zIndex: 9999,
-            }}
+            } : undefined}
           >
             NO
           </Button>
