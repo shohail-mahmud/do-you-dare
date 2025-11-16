@@ -136,9 +136,12 @@ const Index = () => {
           </h1>
           <Heart className="w-12 h-12 text-secondary" strokeWidth={1.5} />
         </div>
-        <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-1 text-secondary/60 text-xs">
-          <Heart className="w-3 h-3" strokeWidth={1.5} />
-          <span>~ @shohailmahmud09 [ Instagram ]</span>
+        <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-1 text-secondary/60 text-[10px]">
+          <Heart className="w-2.5 h-2.5" strokeWidth={1.5} />
+          <span>~</span>
+          <a href="https://instagram.com/shohailmahmud09" target="_blank" rel="noopener noreferrer" className="hover:text-secondary/80 transition-colors">
+            @shohailmahmud09
+          </a>
         </div>
       </div>
     );
