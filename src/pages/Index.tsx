@@ -85,7 +85,7 @@ const Index = () => {
     const maxY = window.innerHeight - buttonHeight - 20;
 
     const minDistanceFromCursor = 150;
-    const minDistanceFromYes = 200;
+    const minDistanceFromYes = 80;
     let attempts = 0;
     let newX, newY;
 
