@@ -74,34 +74,44 @@ const Index = () => {
   };
 
   const teleportNoButton = () => {
-    if (!noButtonRef.current || !yesButtonRef.current) return;
+    if (!noButtonRef.current) return;
 
-    const yesButton = yesButtonRef.current;
-    const yesRect = yesButton.getBoundingClientRect();
     const buttonWidth = noButtonRef.current.offsetWidth || 120;
     const buttonHeight = noButtonRef.current.offsetHeight || 48;
 
     const maxX = window.innerWidth - buttonWidth - 20;
     const maxY = window.innerHeight - buttonHeight - 20;
 
+    const minDistance = 150;
+    const maxDistance = 200;
     let attempts = 0;
     let newX, newY;
 
     do {
-      newX = Math.max(10, Math.random() * maxX);
-      newY = Math.max(10, Math.random() * maxY);
+      newX = Math.max(10, Math.min(Math.random() * maxX, maxX));
+      newY = Math.max(10, Math.min(Math.random() * maxY, maxY));
 
-      const distanceToYes = Math.sqrt(
-        Math.pow(newX + buttonWidth / 2 - (yesRect.left + yesRect.width / 2), 2) +
-        Math.pow(newY + buttonHeight / 2 - (yesRect.top + yesRect.height / 2), 2)
+      // Check distance from cursor (both X and Y must be at least minDistance apart)
+      const distanceX = Math.abs(newX + buttonWidth / 2 - mousePosition.x);
+      const distanceY = Math.abs(newY + buttonHeight / 2 - mousePosition.y);
+      const totalDistance = Math.sqrt(
+        Math.pow(distanceX, 2) + Math.pow(distanceY, 2)
       );
 
-      if (distanceToYes > 150 || attempts > 20) {
+      // Ensure position is far enough from cursor and within viewport bounds
+      if (
+        totalDistance >= minDistance &&
+        totalDistance <= maxDistance * 2 &&
+        newX >= 10 &&
+        newX <= maxX &&
+        newY >= 10 &&
+        newY <= maxY
+      ) {
         break;
       }
 
       attempts++;
-    } while (attempts < 30);
+    } while (attempts < 50);
 
     setNoButtonPosition({ x: newX, y: newY });
   };
