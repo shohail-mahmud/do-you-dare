@@ -49,54 +49,50 @@ const Index = () => {
   }, [mousePosition, accepted]);
 
   const positionNoButton = (initial = false) => {
-    if (!noButtonRef.current || !containerRef.current) return;
+    if (!noButtonRef.current) return;
 
-    const container = containerRef.current;
-    const containerRect = container.getBoundingClientRect();
     const buttonWidth = noButtonRef.current.offsetWidth || 120;
     const buttonHeight = noButtonRef.current.offsetHeight || 48;
 
-    const maxX = containerRect.width - buttonWidth - 40;
-    const maxY = containerRect.height - buttonHeight - 40;
+    const maxX = window.innerWidth - buttonWidth - 20;
+    const maxY = window.innerHeight - buttonHeight - 20;
 
     let newX, newY;
 
     if (initial) {
       // Initial position: bottom right area
-      newX = maxX - 20;
-      newY = maxY - 20;
+      newX = Math.max(10, maxX - 20);
+      newY = Math.max(10, maxY - 20);
     } else {
-      // Random position
-      newX = Math.random() * maxX + 20;
-      newY = Math.random() * maxY + 20;
+      // Random position, clamped to viewport
+      newX = Math.max(10, Math.random() * maxX);
+      newY = Math.max(10, Math.random() * maxY);
     }
 
     setNoButtonPosition({ x: newX, y: newY });
   };
 
   const teleportNoButton = () => {
-    if (!noButtonRef.current || !yesButtonRef.current || !containerRef.current) return;
+    if (!noButtonRef.current || !yesButtonRef.current) return;
 
-    const container = containerRef.current;
-    const containerRect = container.getBoundingClientRect();
     const yesButton = yesButtonRef.current;
     const yesRect = yesButton.getBoundingClientRect();
     const buttonWidth = noButtonRef.current.offsetWidth || 120;
     const buttonHeight = noButtonRef.current.offsetHeight || 48;
 
+    const maxX = window.innerWidth - buttonWidth - 20;
+    const maxY = window.innerHeight - buttonHeight - 20;
+
     let attempts = 0;
     let newX, newY;
 
     do {
-      newX = Math.random() * (containerRect.width - buttonWidth - 40) + 20;
-      newY = Math.random() * (containerRect.height - buttonHeight - 40) + 20;
-
-      const absoluteX = containerRect.left + newX;
-      const absoluteY = containerRect.top + newY;
+      newX = Math.max(10, Math.random() * maxX);
+      newY = Math.max(10, Math.random() * maxY);
 
       const distanceToYes = Math.sqrt(
-        Math.pow(absoluteX + buttonWidth / 2 - (yesRect.left + yesRect.width / 2), 2) +
-        Math.pow(absoluteY + buttonHeight / 2 - (yesRect.top + yesRect.height / 2), 2)
+        Math.pow(newX + buttonWidth / 2 - (yesRect.left + yesRect.width / 2), 2) +
+        Math.pow(newY + buttonHeight / 2 - (yesRect.top + yesRect.height / 2), 2)
       );
 
       if (distanceToYes > 150 || attempts > 20) {
@@ -149,10 +145,12 @@ const Index = () => {
           <Button
             ref={noButtonRef}
             variant="brutalist-secondary"
-            className="font-bold uppercase text-sm tracking-wide absolute"
+            className="font-bold uppercase text-sm tracking-wide !bg-white !text-black !border-4 !border-black"
             style={{
+              position: 'fixed',
               left: `${noButtonPosition.x}px`,
               top: `${noButtonPosition.y}px`,
+              zIndex: 9999,
             }}
           >
             NO
