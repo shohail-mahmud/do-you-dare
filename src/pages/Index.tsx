@@ -112,12 +112,12 @@ const Index = () => {
 
   if (accepted) {
     return (
-      <div className="min-h-screen bg-primary flex items-center justify-center p-4 transition-all duration-150">
-        <div className="border-thick border-secondary bg-primary p-12 flex flex-col items-center gap-6">
-          <h1 className="text-2xl font-bold text-secondary uppercase tracking-tight text-center">
-            GREAT CHOICE.
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <div className="border-thick border-primary bg-background p-12 flex flex-col items-center gap-6">
+          <h1 className="text-2xl font-bold text-foreground uppercase tracking-tight text-center">
+            GREAT CHOICE :)
           </h1>
-          <Heart className="w-12 h-12 text-secondary" strokeWidth={3} />
+          <Heart className="w-12 h-12 text-foreground" strokeWidth={1.5} />
         </div>
       </div>
     );
@@ -138,7 +138,7 @@ const Index = () => {
             ref={yesButtonRef}
             onClick={handleYesClick}
             variant="brutalist-primary"
-            className="font-bold uppercase text-sm tracking-wide"
+            className="font-bold uppercase text-sm tracking-wide transition-all duration-150 hover:border-white hover:border-[2px]"
           >
             YES
           </Button>
