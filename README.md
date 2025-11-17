@@ -1,73 +1,56 @@
-# Welcome to your Lovable project
+# **Do You Dare?**
 
-## Project info
+An ultra-minimal, neo-brutalist, black-and-white confession website — featuring the legendary *un-clickable* NO button.
 
-**URL**: https://lovable.dev/projects/8ba116b5-45f3-45a8-bef2-b87fec28bb0e
+This project asks one simple question:
 
-## How can I edit this code?
+> **Do you wanna be my girlfriend?**  
+> **Yes** — works normally  
+> **No** — teleports away forever.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 💡 Idea  
+This project started as a simple question — but with a twist.  
+The goal was to create the *most brutally minimal*, pencil-sketched, black-and-white “confession site” ever…  
+**except the NO button refuses to cooperate.**  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8ba116b5-45f3-45a8-bef2-b87fec28bb0e) and start prompting.
+The concept mixes:  
+- neo-brutalism  
+- sketchbook aesthetics  
+- playful chaos  
+- and a bit of emotional damage  
 
-Changes made via Lovable will be committed automatically to this repo.
+The result?  
+A website that looks innocent and handmade,  
+but behaves like it has *trust issues*.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## ⚡ Features
+- Neo-brutalist black & white UI  
+- Pencil-sketch aesthetic  
+- YES button → success screen  
+- NO button → chaotic teleporting  
+- Always stays inside the viewport  
+- Guaranteed minimum distance from cursor  
+- Fully optimized for GitHub & Vercel free plans  
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🛠 Tech Stack
+- Lovable.dev  
+- React  
+- TailwindCSS  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 👤 Author
+**Shohail**  
+Creative web builder, UI/UX designer, & full-time vibe coder.  
+Instagram: **[@shohailmahmud09](https://instagram.com/shohailmahmud09)**  
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8ba116b5-45f3-45a8-bef2-b87fec28bb0e) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## ❤️ Credits
+**GPT** — your chaos-powered creative partner.
