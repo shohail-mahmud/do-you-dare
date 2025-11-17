@@ -53,4 +53,4 @@ Instagram: **[@shohailmahmud09](https://instagram.com/shohailmahmud09)**
 ---
 
 ## ❤️ Credits
-**GPT** — your chaos-powered creative partner.
+**GPT** — crime partner 😌
