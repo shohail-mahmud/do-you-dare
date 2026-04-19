@@ -8,6 +8,8 @@ This project asks one simple question:
 > **Yes** — works normally  
 > **No** — teleports away forever.
 
+# **Live URL**
+https://do-you-dare.vercel.app/
 ---
 
 ## 💡 Idea  
